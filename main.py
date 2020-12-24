@@ -15,10 +15,14 @@ def speak(audio):
 
 def query_func(word):
   if word in data:
-    datas = data[word]
-    for item in datas:
-      speak(item)
-      print(item)
+    output = data[word]
+    if type(output) == list:
+      for item in output:
+        speak(item)
+        print(item)
+    else:
+      speak(output)
+      print(output)
     
     
   
@@ -31,10 +35,14 @@ def query_func(word):
   
 
     if yn == 'y':
-      datas = (data[get_close_matches(word, data.keys())[0]])
-      for item in datas:
-        speak(item)
-        print(item)
+      output = data[get_close_matches(word, data.keys())[0]]
+      if type(output) == list:
+        for item in output:
+          speak(item)
+          print(item)
+      else:
+        speak(output)
+        print(output)
      
     
     elif yn == 'n':
@@ -71,7 +79,8 @@ while True:
     i = i + 1
   speak("Enter the word")
   word = input("Enter The Word: ")
-  if word != "0000":
+  names = ["mahmud", "rezwan", "rayhan"]
+  if word != "0000" and word != "rezwan" and word !=  "rayhan" and word != "mahmud":
     speak("The meanings of the word")
     speak(word)
   word_capitaliza = word.lower()
